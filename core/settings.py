@@ -39,8 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'treebeard',
-    'apps.contrib',
+    'apps.cadastros_basicos',
     'apps.atendimento',
+    'apps.usuario',
 ]
 
 MIDDLEWARE = [

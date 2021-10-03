@@ -1,82 +1,5 @@
 from django.db import models
 
-
-class Consulente(models.Model):
-    cols = {
-        'nome': 6,
-        'cpf': 3,
-        'data_nascimento': 3,
-        'endereco': 9,
-        'cidade': 3,
-        'email': 6,
-        'telefone': 6,
-    }
-    nome = models.CharField('Nome', max_length=255)
-    cpf = models.CharField('CPF', max_length=11, null=True, blank=True)
-    data_nascimento = models.DateField('Data de nascimento')
-    email = models.EmailField('Email', null=True, blank=True)
-    endereco = models.CharField('Endereço', max_length=255, null=True, blank=True)
-    cidade = models.ForeignKey('Cidade', 
-                on_delete=models.PROTECT,
-                related_name='%(class)s_cidade',
-                null=True, blank=True
-    )
-    telefone = models.CharField('Telefone', max_length=255, null=True, blank=True)
-
-    def __str__(self):
-        return self.nome
-    
-    class Meta:
-        verbose_name = 'Consulente'
-        verbose_name_plural = 'Consulentes'
-
-
-class Trabalhador(models.Model):
-    cols = {
-        'nome': 6,
-        'cpf': 3,
-        'data_nascimento': 3,
-        'endereco': 9,
-        'cidade': 3,
-        'telefone': 5,
-        'email': 6,
-        'ativo': 1,
-        'tipo_mediunidade': 6,
-        'funcao': 6,
-    }
-    nome = models.CharField('Nome', max_length=255)
-    cpf = models.CharField('CPF', max_length=11, null=True, blank=True)
-    data_nascimento = models.DateField('Data de nascimento')
-    email = models.EmailField('Email', null=True, blank=True)
-    endereco = models.CharField('Endereço', max_length=255, null=True, blank=True)
-    ativo = models.BooleanField('Ativo', default=True)
-    cidade = models.ForeignKey('Cidade', 
-                on_delete=models.PROTECT,
-                related_name='%(class)s_cidade',
-                null=True, blank=True
-    )
-    telefone = models.CharField('Telefone', max_length=255, null=True, blank=True)
-    tipo_mediunidade = models.ManyToManyField(
-        'TipoMediunidade', 
-        verbose_name='Tipos de mediunidade', 
-        related_name='%(class)s_tipo_mediunidade',
-        blank=True
-    )
-    funcao = models.ManyToManyField(
-        'TrabalhadorFuncao',
-        verbose_name='Funções',
-        related_name='%(class)s_funcao',
-        blank=True
-    )
-    
-    def __str__(self):
-        return self.nome
-    
-    class Meta:
-        verbose_name = 'Trabalhador'
-        verbose_name_plural = 'Trabalhadores'
-
-
 class Entidade(models.Model):
     cols = {
         'nome': 8,
@@ -130,7 +53,7 @@ class TipoMediunidade(models.Model):
         verbose_name = 'Tipo de mediunidade'
         verbose_name_plural = 'Tipos de mediunidade'
 
-class TrabalhadorFuncao(models.Model):
+class Faixa(models.Model):
     cols = {
         'titulo': 6,
         'descricao': 12
@@ -142,8 +65,9 @@ class TrabalhadorFuncao(models.Model):
         return self.titulo
     
     class Meta:
-        verbose_name = 'Função do trabalhador'
-        verbose_name_plural = 'Funções dos trabalhadores'
+        verbose_name = 'Faixa'
+        verbose_name_plural = 'Faixas'
+        
 class Terapia(models.Model):
     cols = {
         'titulo': 6,

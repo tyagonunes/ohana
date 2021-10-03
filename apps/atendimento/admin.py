@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ConsultaPretosVelhos
+from .models import ConsultaPretosVelhos, AgendaLibertacao
 
 
 @admin.register(ConsultaPretosVelhos)
@@ -22,7 +22,9 @@ class ConsultaPretosVelhosAdmin(admin.ModelAdmin):
             )
         }),
     )
-
-
-
+@admin.register(AgendaLibertacao)
+class AgendaLibertacaoAdmin(admin.ModelAdmin):
+    search_fields = ()
+    list_filter = ('data', )
+    list_display = ('id', 'data')
 
