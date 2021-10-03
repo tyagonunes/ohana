@@ -38,16 +38,18 @@ class Trabalhador(models.Model):
         'data_nascimento': 3,
         'endereco': 9,
         'cidade': 3,
-        'telefone': 6,
+        'telefone': 5,
         'email': 6,
+        'ativo': 1,
         'tipo_mediunidade': 6,
-        'funcao': 6
+        'funcao': 6,
     }
     nome = models.CharField('Nome', max_length=255)
     cpf = models.CharField('CPF', max_length=11, null=True, blank=True)
     data_nascimento = models.DateField('Data de nascimento')
     email = models.EmailField('Email', null=True, blank=True)
     endereco = models.CharField('Endereço', max_length=255, null=True, blank=True)
+    ativo = models.BooleanField('Ativo', default=True)
     cidade = models.ForeignKey('Cidade', 
                 on_delete=models.PROTECT,
                 related_name='%(class)s_cidade',
@@ -142,6 +144,19 @@ class TrabalhadorFuncao(models.Model):
     class Meta:
         verbose_name = 'Função do trabalhador'
         verbose_name_plural = 'Funções dos trabalhadores'
+class Terapia(models.Model):
+    cols = {
+        'titulo': 6,
+        'descricao': 12
+    }
+    titulo = models.CharField('Título', max_length=255)
+    descricao = models.TextField('Descrição', null=True, blank=True)
+
+    def __str__(self):
+        return self.titulo
+    class Meta:
+        verbose_name = 'Terapia'
+        verbose_name_plural = 'Terapias'
 
 class Cidade(models.Model):
     nome = models.CharField('Nome', max_length=255)

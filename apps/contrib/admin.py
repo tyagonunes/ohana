@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Consulente, Entidade, TipoEntidade, TipoMediunidade, Trabalhador, TrabalhadorFuncao, Cidade, Estado
+from .models import Consulente, Entidade, TipoEntidade, TipoMediunidade, Trabalhador, TrabalhadorFuncao, Cidade, Estado, Terapia
 
 @admin.register(Consulente)
 class ConsulenteAdmin(admin.ModelAdmin):
@@ -37,6 +37,7 @@ class TrabalhadorAdmin(admin.ModelAdmin):
                 'cidade',
                 'email',
                 'telefone',
+                'ativo',
                 'tipo_mediunidade',
                 'funcao'
             )
@@ -73,6 +74,12 @@ class TipoMediunidadeAdmin(admin.ModelAdmin):
 
 @admin.register(TrabalhadorFuncao)
 class TrabalhadorFuncaoAdmin(admin.ModelAdmin):
+    search_fields = ('titulo', 'descricao' )
+    list_filter = ()
+    list_display = ('titulo', 'descricao', )
+
+@admin.register(Terapia)
+class TerapiaAdmin(admin.ModelAdmin):
     search_fields = ('titulo', 'descricao' )
     list_filter = ()
     list_display = ('titulo', 'descricao', )
