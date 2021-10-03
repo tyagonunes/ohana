@@ -1,12 +1,10 @@
 from django.contrib import admin
-from django.db import models
-from django.forms.widgets import CheckboxSelectMultiple
-from .models import Consulente, Entidade, TipoEntidade, TipoMediunidade, Trabalhador, TrabalhadorFuncao 
+from .models import Consulente, Entidade, TipoEntidade, TipoMediunidade, Trabalhador, TrabalhadorFuncao, Cidade, Estado
 
 @admin.register(Consulente)
 class ConsulenteAdmin(admin.ModelAdmin):
     search_fields = ('nome', )
-    list_filter = ()
+    list_filter = ('cidade', )
     list_display = ('nome', 'cpf', 'email', 'telefone')
 
     fieldsets = (
@@ -16,6 +14,7 @@ class ConsulenteAdmin(admin.ModelAdmin):
                 'cpf',
                 'data_nascimento',
                 'endereco',
+                'cidade',
                 'email',
                 'telefone'
             )
@@ -27,9 +26,6 @@ class TrabalhadorAdmin(admin.ModelAdmin):
     search_fields = ('nome', 'cpf' )
     list_filter = ('tipo_mediunidade', 'funcao')
     list_display = ('nome', 'cpf', 'email', 'telefone',)
-    formfield_overrides = {
-        models.ManyToManyField: {'widget': CheckboxSelectMultiple},
-    }
     
     fieldsets = (
         (None, {
@@ -38,8 +34,9 @@ class TrabalhadorAdmin(admin.ModelAdmin):
                 'cpf',
                 'data_nascimento',
                 'endereco',
-                'telefone',
+                'cidade',
                 'email',
+                'telefone',
                 'tipo_mediunidade',
                 'funcao'
             )
@@ -79,3 +76,15 @@ class TrabalhadorFuncaoAdmin(admin.ModelAdmin):
     search_fields = ('titulo', 'descricao' )
     list_filter = ()
     list_display = ('titulo', 'descricao', )
+
+@admin.register(Cidade)
+class CidadeAdmin(admin.ModelAdmin):
+    search_fields = ('nome', )
+    list_filter = ('estado',)
+    list_display = ('nome', 'estado', )
+
+@admin.register(Estado)
+class EstadoAdmin(admin.ModelAdmin):
+    search_fields = ('nome',)
+    list_filter = ()
+    list_display = ('nome', 'sigla', )
