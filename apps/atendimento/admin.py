@@ -1,30 +1,52 @@
 from django.contrib import admin
-from .models import ConsultaPretosVelhos, AgendaLibertacao
+from .models import Atendimento, Consulente
 
+class AtendimentoInline(admin.StackedInline):
+    model = Atendimento
+    extra = 1
 
-@admin.register(ConsultaPretosVelhos)
-class ConsultaPretosVelhosAdmin(admin.ModelAdmin):
+@admin.register(Atendimento)
+class AtendimentoAdmin(admin.ModelAdmin):
     search_fields = ()
-    list_filter = ('entidade', 'data', 'precisa_retorno')
-    list_display = ('consulente', 'entidade', 'data')
+    list_filter = ('data', 'precisa_retorno')
+    list_display = ('consulente', 'data')
 
     fieldsets = (
         (None, {
             'fields': (
                 'consulente',
-                'entidade',
                 'data',
-                'trabalhadores',
-                'terapias_recomendadas',
                 'precisa_retorno',
                 'recomendacoes',
-                'observacoes',
             )
         }),
     )
-@admin.register(AgendaLibertacao)
-class AgendaLibertacaoAdmin(admin.ModelAdmin):
-    search_fields = ()
-    list_filter = ('data', )
-    list_display = ('id', 'data')
+
+@admin.register(Consulente)
+class ConsulenteAdmin(admin.ModelAdmin):
+    search_fields = ('nome', )
+    list_filter = ()
+    list_display = ('nome', 'email', 'telefone', 'telefone_whatsapp')
+
+    fieldsets = (
+        (None, {
+            'fields': (
+                'nome',
+                'data_nascimento',
+                'email',
+                'telefone',
+                'telefone_whatsapp',
+                'possui_marcapasso',
+                'doencas_preexistentes',
+                'descricao_doencas_preexistentes',
+                'toma_medicacao',
+                'descricao_medicacao',
+                'motivo_atendimento'
+            )
+        }),
+    )
+
+    inlines = [
+        AtendimentoInline,
+    ]
 
