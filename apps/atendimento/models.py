@@ -1,5 +1,6 @@
 from django.db import models
 from .choices import CHOICE_ALTER
+from django.contrib.auth.models import User
 
 class Atendimento(models.Model):
     cols = {
@@ -25,6 +26,7 @@ class Atendimento(models.Model):
     class Meta:
         verbose_name = 'Atendimento'
         verbose_name_plural = 'Atendimentos'
+        ordering = ['-data']
 
 
 class Consulente(models.Model):
@@ -43,7 +45,7 @@ class Consulente(models.Model):
     }
     nome = models.CharField('Nome', max_length=255)
     data_nascimento = models.DateField('Data de nascimento')
-    email = models.EmailField('Email', null=True, blank=True)
+    email = models.EmailField('Email', unique=True, null=True, blank=True)
     telefone = models.CharField('Telefone', max_length=255, null=True, blank=True)
     telefone_whatsapp = models.BooleanField('Telefone é Whatsapp', default=False)
     doencas_preexistentes = models.IntegerField('Tem doença(s) diagnosticada(s) por médico(s)?', choices=CHOICE_ALTER, default=0)
@@ -52,6 +54,7 @@ class Consulente(models.Model):
     toma_medicacao = models.IntegerField('Está tomando medicação?', choices=CHOICE_ALTER, default=0)
     descricao_medicacao = models.TextField('Quais?', blank=True, null=True)
     motivo_atendimento = models.TextField('Motivo da procura pelo atendimento (o que procura obter?)', blank=True, null=True)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Usuário', null=True, blank=True)
 
     def __str__(self):
         return self.nome

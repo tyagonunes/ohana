@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Preloader -->
+<div id="preloader">
+    <i class="circle-preloader"></i>
+    <img src="{% static 'img/core-img/merkaba.jpg' %}" alt="">
+</div>
+
+{% include 'partials/_menu.html' %}
+
+<!-- ##### Contact Form Area Start ##### -->
+<div class="contact-area section-padding-0-80">
+    <div class="container">
+        {% include 'partials/_alertas.html' %}
+        <div class="row">
+            <div class="col-12">
+                <div class="contact-form-area">
+                    <h4 class="text-center">Entrar</h4>
+                    <form action="{% url 'login' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            {% for field in form.visible_fields %}
+                            <div class="col-12 col-lg-12">
+                                <label for="{{field.id_for_label}}">{{field.label}}</label>
+                                {{field}}
+                            </div>
+                            {% for error in field.errors %}
+                            <section class="error-field-list">
+                                {{ field.errors }}
+                            </section>
+                            {% endfor %}
+                            {% endfor %}
+                            <div class="col-12 text-center">
+                                <button class="btn btn-success" type="submit">Entrar</button> <br><br>
+                                <a href="{% url 'cadastro' %}" class="">Cadastrar-se</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function exibirCriarConta()
+{
+     location.href = "{% url 'cadastro' %}";
+} 
+</script>
+
+{% endblock %}

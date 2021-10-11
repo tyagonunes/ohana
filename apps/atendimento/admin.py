@@ -29,19 +29,28 @@ class ConsulenteAdmin(admin.ModelAdmin):
     list_display = ('nome', 'email', 'telefone', 'telefone_whatsapp')
 
     fieldsets = (
-        (None, {
+        ('Informações Básicas', {
             'fields': (
                 'nome',
                 'data_nascimento',
                 'email',
                 'telefone',
                 'telefone_whatsapp',
+            )
+        }),
+        ('Outras Informações', {
+            'fields': (
                 'possui_marcapasso',
                 'doencas_preexistentes',
                 'descricao_doencas_preexistentes',
                 'toma_medicacao',
                 'descricao_medicacao',
                 'motivo_atendimento'
+            )
+        }),
+        ('', {
+            'fields': (
+                'usuario',
             )
         }),
     )

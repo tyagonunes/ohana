@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Preloader -->
+<div id="preloader">
+    <i class="circle-preloader"></i>
+    <img src="{% static 'img/core-img/pizza.png' %}" alt="">
+</div>
+
+{% include 'partials/_menu.html' %}
+
+<section class="container user-dashboard">
+    <div class="meus-atendimentos">
+        <h4 class="text-center">Meus Atendimentos</h4>
+        {% if atendimentos %}
+        {% for a in atendimentos %}
+        <div class="meus-atendimentos-bloco">
+            <div class="meus-atendimentos-infos">
+                <span><strong>Data:</strong> {{a.data}}</span>
+                <span><strong>Precisa retorno:</strong> {% if a.precisa_retorno %} Sim {% else %} Não {% endif %}</span>
+            </div>
+            <span><strong>Recomendações:</strong> {{a.recomendacoes}}</span>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div>
+            Você ainda não tem atendimentos
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+
+{% endblock %}
