@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'apps.cadastros_basicos',
     'apps.atendimento',
     'apps.usuario',
+    'apps.homepage',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

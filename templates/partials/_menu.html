@@ -1,8 +1,6 @@
 {% load static %}
 <!-- ##### Header Area Start ##### -->
 <header class="header-area">
-
-       
         <!-- Navbar Area -->
         <div class="delicious-main-menu">
             <div class="classy-nav-container breakpoint-off">
@@ -29,11 +27,12 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
+                                    <li><a href="{% url 'index' %}">Home</a></li>
                                     {% if user.is_authenticated %}
+                                    <li><a href="{% url 'dashboard' %}">Meu Ohana</a></li>
                                     <li><a href="{% url 'logout' %}">Sair</a></li>
                                     {% else %}
-                                    <li><a href="{% url 'cadastro' %}">Cadastrar-se</a></li>
-                                    <li><a href="{% url 'login' %}">Entrar</a></li>
+                                    <li><a href="{% url 'login' %}">Login</a></li>
                                   {% endif %}
                                 </ul>
                             </div>

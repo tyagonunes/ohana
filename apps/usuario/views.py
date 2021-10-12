@@ -4,9 +4,6 @@ from django.contrib import auth, messages
 from apps.atendimento.models import Consulente, Atendimento
 from .forms import LoginForm, CadastroForm
 
-def index(request):
-    return redirect('dashboard')
-
 def cadastro(request):
     form = CadastroForm
     if request.method == 'POST':
@@ -46,7 +43,7 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    return redirect('index')
+    return redirect('dashboard')
 
 def dashboard(request):
     if request.user.is_authenticated:
