@@ -225,21 +225,30 @@ textarea:focus {
       max-width: 90px; } }
 
 
+.contact-form-area {
+  max-width: 500px;
+  margin: 50px auto;
+}
+
+.contact-form-area .contact-form-header {
+  font-size: 16px;
+  font-weight: bold;
+}
 .contact-form-area .form-control {
   height: 52px;
   width: 100%;
   background-color: #f3f5f8;
   font-size: 12px;
-  font-style: italic;
+  /* font-style: italic; */
   margin-bottom: 15px;
   border: none;
   border-left: 3px solid #f3f5f8;
-  border-radius: 0;
+  border-radius: 10px;
   padding: 15px 30px;
   -webkit-transition-duration: 500ms;
   transition-duration: 500ms; }
   .contact-form-area .form-control:focus {
-    border-left: 3px solid #40ba37;
+    border-left: 3px solid #9dac9c;
     box-shadow: none; }
 .contact-form-area textarea.form-control {
   height: 200px;
@@ -253,13 +262,17 @@ textarea:focus {
   color: red;
 }
 
+.user-dashboard {
+  padding: 40px auto;
+}
+
 .user-dashboard .meus-atendimentos .meus-atendimentos-bloco {
    padding: 15px 20px;
    background-color: #ffffff;
    border-radius: 10px;
    border-left: 3px solid #28a745; 
-   border: 1px solid #e3e8ed;
-   margin: 15px 0;
+  box-shadow: 1px 0px 2px 0px rgba(0,0,0,0.5);
+   margin: 20px 0;
    width: 100%;
    color: #747c81;
 }
@@ -268,5 +281,5 @@ textarea:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }

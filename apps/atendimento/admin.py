@@ -9,7 +9,7 @@ class AtendimentoInline(admin.StackedInline):
 class AtendimentoAdmin(admin.ModelAdmin):
     search_fields = ()
     list_filter = ('data', 'precisa_retorno')
-    list_display = ('consulente', 'data')
+    list_display = ('data', 'consulente')
 
     fieldsets = (
         (None, {

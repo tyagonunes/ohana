@@ -5,12 +5,12 @@ class LoginForm(forms.Form):
     email = forms.EmailField(
         label='Email',
         required=False,
-        widget=forms.EmailInput(attrs={'class': 'form-control'})
+        widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'})
     )
     senha = forms.CharField(
         label='Senha',
         required=False,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'password'})
+        widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'password', 'placeholder': 'Senha'})
     )
 
     def clean(self, ):
@@ -36,22 +36,22 @@ class CadastroForm(forms.Form):
     nome = forms.CharField(
         label='Nome',
         required=False,
-        widget=forms.TextInput(attrs={'class': 'form-control'})
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nome'})
     )
     email = forms.EmailField(
         label='Email',
         required=False,
-        widget=forms.EmailInput(attrs={'class': 'form-control'})
+        widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'})
     )
     senha = forms.CharField(
         label='Senha',
         required=False,
-        widget=forms.PasswordInput(attrs={'class': 'form-control'})
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Senha'})
     )
     confirma_senha = forms.CharField(
         label='Confirmação de senha',
         required=False,
-        widget=forms.PasswordInput(attrs={'class': 'form-control'})
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirmação de senha'})
     )
 
     def clean(self):

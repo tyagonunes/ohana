@@ -15,13 +15,13 @@
         <h4 class="text-center">Meus Atendimentos</h4>
         {% if atendimentos %}
         {% for a in atendimentos %}
-        <div class="meus-atendimentos-bloco">
-            <div class="meus-atendimentos-infos">
-                <span><strong>Data:</strong> {{a.data}}</span>
-                <span><strong>Precisa retorno:</strong> {% if a.precisa_retorno %} Sim {% else %} Não {% endif %}</span>
+            <div class="meus-atendimentos-bloco">
+                <div class="meus-atendimentos-infos">
+                    <span><strong>Data:</strong> {{a.data}}</span>
+                    <span><strong>Precisa retorno:</strong> {% if a.precisa_retorno %} Sim {% else %} Não {% endif %}</span>
+                </div>
+                <span><strong>Recomendações:</strong> {{a.recomendacoes}}</span>
             </div>
-            <span><strong>Recomendações:</strong> {{a.recomendacoes}}</span>
-        </div>
         {% endfor %}
         {% else %}
         <div class="meus-atendimentos-bloco">
