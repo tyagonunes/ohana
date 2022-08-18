@@ -5,7 +5,7 @@ from .models import Trabalhador
 @admin.register(Trabalhador)
 class TrabalhadorAdmin(admin.ModelAdmin):
     search_fields = ('nome', 'cpf' )
-    list_filter = ('tipo_mediunidade', 'faixas')
+    list_filter = ()
     list_display = ('nome', 'cpf', 'email', 'telefone',)
     
     fieldsets = (
@@ -19,8 +19,6 @@ class TrabalhadorAdmin(admin.ModelAdmin):
                 'email',
                 'telefone',
                 'ativo',
-                'tipo_mediunidade',
-                'faixas'
             )
         }),
     )

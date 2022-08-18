@@ -37,37 +37,6 @@ class TipoEntidade(models.Model):
         verbose_name = 'Tipo de entidade'
         verbose_name_plural = 'Tipos de entidades'
 
-
-class TipoMediunidade(models.Model):
-    cols = {
-        'titulo': 6,
-        'descricao': 12
-    }
-    titulo = models.CharField('Título', max_length=255)
-    descricao = models.TextField('Descrição', null=True, blank=True)
-
-    def __str__(self):
-        return self.titulo
-    
-    class Meta:
-        verbose_name = 'Tipo de mediunidade'
-        verbose_name_plural = 'Tipos de mediunidade'
-
-class Faixa(models.Model):
-    cols = {
-        'titulo': 6,
-        'descricao': 12
-    }
-    titulo = models.CharField('Título', max_length=255)
-    descricao = models.TextField('Descrição', null=True, blank=True)
-
-    def __str__(self):
-        return self.titulo
-    
-    class Meta:
-        verbose_name = 'Faixa'
-        verbose_name_plural = 'Faixas'
-        
 class Terapia(models.Model):
     cols = {
         'titulo': 6,

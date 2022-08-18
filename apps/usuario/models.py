@@ -10,7 +10,6 @@ class Trabalhador(models.Model):
         'telefone': 5,
         'email': 6,
         'ativo': 1,
-        'tipo_mediunidade': 6,
         'funcao': 6,
     }
     nome = models.CharField('Nome', max_length=255)
@@ -26,18 +25,7 @@ class Trabalhador(models.Model):
                 null=True, blank=True
     )
     telefone = models.CharField('Telefone', max_length=255, null=True, blank=True)
-    tipo_mediunidade = models.ManyToManyField(
-        'cadastros_basicos.TipoMediunidade', 
-        verbose_name='Tipos de mediunidade', 
-        related_name='%(class)s_tipo_mediunidade',
-        blank=True
-    )
-    faixas = models.ManyToManyField(
-        'cadastros_basicos.Faixa',
-        verbose_name='Faixas',
-        related_name='%(class)s_faixas',
-        blank=True
-    )
+   
     
     def __str__(self):
         return self.nome
