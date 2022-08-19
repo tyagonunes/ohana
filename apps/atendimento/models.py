@@ -10,8 +10,8 @@ class Atendimento(models.Model):
         'guia': 3,
         'medium': 3,
         'mediador': 3,
-        'data': 4,
-        'precisa_retorno': 4,
+        'data': 3,
+        'precisa_retorno': 3,
         'recomendacoes': 12,
     }
     consulente = models.ForeignKey(
