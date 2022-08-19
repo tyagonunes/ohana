@@ -1,0 +1,12 @@
+.datetimeshortcuts {
+  margin-top: 7px;
+  position: absolute;
+  margin-left: -63px;
+}
+
+.calendarbox {
+  position: relative;
+  margin-top: 104px;
+  margin-left: -222px;
+  z-index: 9000;
+}
