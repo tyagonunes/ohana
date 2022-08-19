@@ -1,10 +1,15 @@
 from django.db import models
 from .choices import CHOICE_ALTER
 from django.contrib.auth.models import User
+from apps.cadastros_basicos.models import Entidade
+from apps.usuario.models import Trabalhador
 
 class Atendimento(models.Model):
     cols = {
-        'consulente': 4,
+        'consulente': 3,
+        'guia': 3,
+        'medium': 3,
+        'mediador': 3,
         'data': 4,
         'precisa_retorno': 4,
         'recomendacoes': 12,
@@ -14,6 +19,27 @@ class Atendimento(models.Model):
         on_delete=models.PROTECT,
         verbose_name='Consulente',
         related_name='%(class)s_consulente',
+        null=True, blank=True
+    )
+    mediador = models.ForeignKey(
+        Trabalhador,
+        on_delete=models.PROTECT,
+        verbose_name='Mediador',
+        related_name='%(class)s_mediador',
+        null=True, blank=True
+    )
+    medium = models.ForeignKey(
+        Trabalhador,
+        on_delete=models.PROTECT,
+        verbose_name='Médium',
+        related_name='%(class)s_medium',
+        null=True, blank=True
+    )
+    guia = models.ForeignKey(
+        Entidade,
+        on_delete=models.PROTECT,
+        verbose_name='Guia',
+        related_name='%(class)s_guia',
         null=True, blank=True
     )
     precisa_retorno = models.BooleanField('Precisa de retorno', default=False)

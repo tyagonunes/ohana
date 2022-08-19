@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Entidade, TipoEntidade, Cidade, Estado, Terapia
+from .models import Entidade, TipoEntidade, Cidade, Terapia
 
 @admin.register(Entidade)
 class EntidadeAdmin(admin.ModelAdmin):
@@ -35,8 +35,3 @@ class CidadeAdmin(admin.ModelAdmin):
     list_filter = ('estado',)
     list_display = ('nome', 'estado', )
 
-@admin.register(Estado)
-class EstadoAdmin(admin.ModelAdmin):
-    search_fields = ('nome',)
-    list_filter = ()
-    list_display = ('nome', 'sigla', )

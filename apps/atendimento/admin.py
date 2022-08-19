@@ -15,6 +15,9 @@ class AtendimentoAdmin(admin.ModelAdmin):
         (None, {
             'fields': (
                 'consulente',
+                'medium',
+                'guia',
+                'mediador',
                 'data',
                 'precisa_retorno',
                 'recomendacoes',

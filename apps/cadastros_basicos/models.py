@@ -1,4 +1,5 @@
 from django.db import models
+from .choices import ESTADOS_CHOICES
 
 class Entidade(models.Model):
     cols = {
@@ -53,25 +54,15 @@ class Terapia(models.Model):
 
 class Cidade(models.Model):
     nome = models.CharField('Nome', max_length=255)
-    estado = models.ForeignKey('Estado',
-                on_delete=models.PROTECT,
-                related_name='%(class)s_estado',
-                null=True, blank=True
+    estado = models.IntegerField(
+        'Estado',
+        choices=ESTADOS_CHOICES,
+        null=True, blank=True
     )
+    
     def __str__(self):
-        return '{} - {}'.format(self.nome, self.estado)
+        return '{} - {}'.format(self.nome, self.get_estado_display())
     
     class Meta:
         verbose_name = 'Cidade'
         verbose_name_plural = 'Cidades'
-
-class Estado(models.Model):
-    nome = models.CharField('Nome', max_length=255)
-    sigla = models.CharField('sigla', max_length=2)
-
-    def __str__(self):
-        return self.sigla
-    
-    class Meta:
-        verbose_name = 'Estado'
-        verbose_name_plural = 'Estados'
