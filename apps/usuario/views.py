@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
-from apps.atendimento.models import Consulente, Atendimento
+from apps.atendimento.models import AtendimentoPretoVelho
+from apps.usuario.models import Consulente
 from .forms import LoginForm, CadastroForm
 
 def cadastro(request):
@@ -48,7 +49,7 @@ def logout(request):
 def dashboard(request):
     if request.user.is_authenticated:
         consulente = Consulente.objects.filter(usuario=request.user).first()
-        atendimentos = Atendimento.objects.filter(consulente=consulente)
+        atendimentos = AtendimentoPretoVelho.objects.filter(consulente=consulente)
 
         context = { 
             'atendimentos': atendimentos

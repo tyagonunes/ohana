@@ -18,6 +18,7 @@
             <div class="meus-atendimentos-bloco">
                 <div class="meus-atendimentos-infos">
                     <span><strong>Data:</strong> {{a.data}}</span>
+                    <span><strong>Status:</strong> {% if a.status %} {{a.get_status_display}} {% else %} '' {% endif %}</span>
                     <span><strong>Precisa retorno:</strong> {% if a.precisa_retorno %} Sim {% else %} Não {% endif %}</span>
                 </div>
                 <span><strong>Recomendações:</strong> {{a.recomendacoes}}</span>

@@ -1,4 +1,6 @@
-CHOICE_ALTER = [
-  (0, 'Não'),
-  (1, 'Sim')
-]
+CHOICES_STATUS_ATENDIMENTO = (
+  (1, 'Agendado'),
+  (2, 'Realizado'),
+  (3, 'Cancelado'),
+  (4, 'Solicitado'),
+)
