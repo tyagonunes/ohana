@@ -1,5 +1,5 @@
 from django.db import models
-from apps.cadastros_basicos.models import Entidade
+from apps.cadastros_basicos.models import Banho, Entidade, Terapia
 from apps.usuario.models import Trabalhador, Consulente
 
 from .choices import CHOICES_STATUS_ATENDIMENTO
@@ -48,6 +48,12 @@ class AtendimentoPretoVelho(models.Model):
     data = models.DateField('Data')
     recomendacoes = models.TextField('Recomendações', null=True, blank=True)
 
+    def get_banhos(self):
+        return AtendimentoPretoVelhoBanho.objects.filter(atendimento_id=self.id)
+    
+    def get_terapias(self):
+        return AtendimentoPretoVelhoTerapia.objects.filter(atendimento_id=self.id)
+
     def __str__(self):
         return '{} - {}'.format(self.consulente, self.data.strftime('%d/%m/%Y'))
     
@@ -57,3 +63,46 @@ class AtendimentoPretoVelho(models.Model):
         ordering = ['-data']
 
 
+class AtendimentoPretoVelhoTerapia(models.Model):
+    cols = {
+        'terapia': 6,
+        'data': 6
+    }
+    atendimento = models.ForeignKey(
+        AtendimentoPretoVelho,
+        on_delete=models.PROTECT,
+        related_name='%(class)s_atendimento'
+    )
+    terapia = models.ForeignKey(
+        Terapia,
+        on_delete=models.PROTECT,
+        verbose_name='Terapia',
+        related_name='%(class)s_terapia',
+    )
+    data = models.DateField('Data', blank=True, null=True)
+
+    def __str__(self):
+        return '{} - {}'.format(self.terapia, self.data.strftime('%d/%m/%Y'))
+
+    class Meta:
+        verbose_name = 'Atendimento Terapia'
+        verbose_name_plural = 'Atendimentos Terapias'
+
+class AtendimentoPretoVelhoBanho(models.Model):
+    atendimento = models.ForeignKey(
+        AtendimentoPretoVelho,
+        on_delete=models.PROTECT,
+        related_name='%(class)s_atendimento'
+    )
+    banho = models.ForeignKey(
+        Banho,
+        on_delete=models.PROTECT,
+        related_name='%(class)s_banho'
+    )
+    instrucoes = models.TextField('Instruções', blank=True, null=True)
+
+    def __str__(self):
+        return '{} - {}'.format(self.atendimento, self.banho)
+    class Meta:
+        verbose_name = 'Atendimento Banho'
+        verbose_name_plural = 'Atendimentos Banhos'

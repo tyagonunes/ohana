@@ -77,3 +77,14 @@ class Ingrediente(models.Model):
     class Meta:
         verbose_name = 'Ingrediente'
         verbose_name_plural = 'Ingredientes'
+
+class Banho(models.Model):
+    titulo = models.CharField('Título', max_length=255)
+    descricao = models.TextField('Descrição')
+
+    def __str__(self):
+        return self.titulo
+    
+    class Meta:
+        verbose_name = 'Banho'
+        verbose_name_plural = 'Banhos'

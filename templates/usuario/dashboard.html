@@ -19,9 +19,34 @@
                 <div class="meus-atendimentos-infos">
                     <span><strong>Data:</strong> {{a.data}}</span>
                     <span><strong>Status:</strong> {% if a.status %} {{a.get_status_display}} {% else %} '' {% endif %}</span>
-                    <span><strong>Precisa retorno:</strong> {% if a.precisa_retorno %} Sim {% else %} Não {% endif %}</span>
                 </div>
-                <span><strong>Recomendações:</strong> {{a.recomendacoes}}</span>
+                <div><strong>Guia:</strong> {{a.guia}}</div>
+                <div><strong>Recomendações do guia:</strong> {{a.recomendacoes}}</div>
+                <div><strong>Retorno:</strong> {% if a.precisa_retorno %} Sim {% else %} Não {% endif %}</div>
+
+                <div class="mt-2 mb-2">
+                    <a data-toggle="collapse" href="#collapseExample">
+                        Ver mais
+                    </a>
+                </div>
+                <div class="collapse" id="collapseExample">
+                    <div class="card">
+                        <div class="card-header"> <strong>Banhos</strong></div>
+                        <div class="card-body">
+                            {% for b in a.get_banhos %}
+                            <div><strong>{{b.banho}}</strong>: {{b.instrucoes}}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><strong>Terapias</strong></div>
+                        <div class="card-body">
+                            {% for t in a.get_terapias %}
+                            <div><strong>{{t.terapia}}</strong>: {{t.data}}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
             </div>
         {% endfor %}
         {% else %}
