@@ -1,10 +1,11 @@
 from django.db import models
 from apps.cadastros_basicos.models import Banho, Entidade, Terapia
 from apps.usuario.models import Trabalhador, Consulente
+from apps.base.mixins import BaseModel
 
 from .choices import CHOICES_STATUS_ATENDIMENTO
 
-class AtendimentoPretoVelho(models.Model):
+class AtendimentoPretoVelho(BaseModel):
     cols = {
         'consulente': 3,
         'guia': 3,
@@ -63,7 +64,7 @@ class AtendimentoPretoVelho(models.Model):
         ordering = ['-data']
 
 
-class AtendimentoPretoVelhoTerapia(models.Model):
+class AtendimentoPretoVelhoTerapia(BaseModel):
     cols = {
         'terapia': 6,
         'data': 6,
@@ -90,7 +91,7 @@ class AtendimentoPretoVelhoTerapia(models.Model):
         verbose_name = 'Atendimento Terapia'
         verbose_name_plural = 'Atendimentos Terapias'
 
-class AtendimentoPretoVelhoBanho(models.Model):
+class AtendimentoPretoVelhoBanho(BaseModel):
     cols = {
         'banho': 6,
         'instrucoes': 12
