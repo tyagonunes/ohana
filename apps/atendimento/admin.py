@@ -5,11 +5,11 @@ class AtendimentoPretoVelhoInline(admin.StackedInline):
     model = AtendimentoPretoVelho
     extra = 1
 
-class AtendimentoPretoVelhoTerapiaInline(admin.TabularInline):
+class AtendimentoPretoVelhoTerapiaInline(admin.StackedInline):
     model = AtendimentoPretoVelhoTerapia
     extra = 1
 
-class AtendimentoPretoVelhoBanhoInline(admin.TabularInline):
+class AtendimentoPretoVelhoBanhoInline(admin.StackedInline):
     model = AtendimentoPretoVelhoBanho
     extra = 1
 @admin.register(AtendimentoPretoVelho)

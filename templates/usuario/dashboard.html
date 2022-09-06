@@ -20,30 +20,69 @@
                     <span><strong>Data:</strong> {{a.data}}</span>
                     <span><strong>Status:</strong> {% if a.status %} {{a.get_status_display}} {% else %} '' {% endif %}</span>
                 </div>
-                <div><strong>Guia:</strong> {{a.guia}}</div>
-                <div><strong>Recomendações do guia:</strong> {{a.recomendacoes}}</div>
-                <div><strong>Retorno:</strong> {% if a.precisa_retorno %} Sim {% else %} Não {% endif %}</div>
+                <p><strong>Guia:</strong> {{a.guia}}</p>
+                <p><strong>Recomendações do guia:</strong> {{a.recomendacoes}}</p>
+                {% comment %} <div><strong>Retorno:</strong> {% if a.precisa_retorno %} Sim {% else %} Não {% endif %}</div> {% endcomment %}
 
+                <a id="link-mais" data-toggle="collapse" href="#detalhes-{{forloop.counter}}">Ver mais</a>
                 <div class="mt-2 mb-2">
-                    <a data-toggle="collapse" href="#collapseExample">
-                        Ver mais
-                    </a>
                 </div>
-                <div class="collapse" id="collapseExample">
+                <div class="collapse" id="detalhes-{{forloop.counter}}">
                     <div class="card">
                         <div class="card-header"> <strong>Banhos</strong></div>
                         <div class="card-body">
-                            {% for b in a.get_banhos %}
-                            <div><strong>{{b.banho}}</strong>: {{b.instrucoes}}</div>
-                            {% endfor %}
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Ingredientes</th>
+                                        <th>Detalhes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for b in a.get_banhos %}
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td>{{b.banho}}</td>
+                                        <td>{% if b.instrucoes %}{{b.instrucoes}}{% else %}{{b.banho.descricao}}{% endif %}</td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td>Nenhum banho foi indicado</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <div class="card">
                         <div class="card-header"><strong>Terapias</strong></div>
                         <div class="card-body">
-                            {% for t in a.get_terapias %}
-                            <div><strong>{{t.terapia}}</strong>: {{t.data}}</div>
-                            {% endfor %}
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Terapia</th>
+                                        <th>Instruções</th>
+                                        <th>Data</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for t in a.get_terapias %}
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td>{{t.terapia}}</td>
+                                        <td>{{t.instrucoes}}</td>
+                                        <td>{% if t.data %} {{t.data}} {% else %} - {% endif %}</td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td>Nenhuma terapia foi indicada</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            <div><strong></strong>: </div>
                         </div>
                     </div>
                 </div>
@@ -57,5 +96,8 @@
     </div>
 </section>
 
+<script>
+
+</script>
 
 {% endblock %}

@@ -66,7 +66,8 @@ class AtendimentoPretoVelho(models.Model):
 class AtendimentoPretoVelhoTerapia(models.Model):
     cols = {
         'terapia': 6,
-        'data': 6
+        'data': 6,
+        'instrucoes': 12
     }
     atendimento = models.ForeignKey(
         AtendimentoPretoVelho,
@@ -80,15 +81,20 @@ class AtendimentoPretoVelhoTerapia(models.Model):
         related_name='%(class)s_terapia',
     )
     data = models.DateField('Data', blank=True, null=True)
+    instrucoes = models.TextField('Instruções', blank=True, null=True)
 
     def __str__(self):
-        return '{} - {}'.format(self.terapia, self.data.strftime('%d/%m/%Y'))
+        return '{}'.format(self.terapia)
 
     class Meta:
         verbose_name = 'Atendimento Terapia'
         verbose_name_plural = 'Atendimentos Terapias'
 
 class AtendimentoPretoVelhoBanho(models.Model):
+    cols = {
+        'banho': 6,
+        'instrucoes': 12
+    }
     atendimento = models.ForeignKey(
         AtendimentoPretoVelho,
         on_delete=models.PROTECT,
